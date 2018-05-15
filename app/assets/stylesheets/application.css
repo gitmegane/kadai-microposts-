@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+li {
+  list-style: none;
+}
+
+
+
+.btn_block > .btn_inline {
+ display: inline-block;
+}

@@ -10,22 +10,22 @@
         </div>
         <div>
           <p><%= micropost.content %></p>
-          <p><%= micropost.id %></p>
-        </div>
-        <div>
+
+        </div>  
+        <div class="btn_block">
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% end %>
           
           <% if current_user.likes?(micropost) %>
-            <%= form_for(current_user.relationmicroposts.find_by(micropost_id: micropost.id), html: { method: :delete }) do |f| %>
+            <%= form_for(current_user.relationmicroposts.find_by(micropost_id: micropost.id), html: { method: :delete, class: 'btn_inline'  }) do |f| %>
               <%= hidden_field_tag :micropost_id, micropost.id %>
-              <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-xs' %>
+              <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-xs btn_inline' %>
             <% end %>
           <% else %>
-            <%= form_for(current_user.relationmicroposts.build) do |f| %>
+            <%= form_for(current_user.relationmicroposts.build,  html: { method: :delete, class: 'btn_inline'  }) do |f| %>
               <%= hidden_field_tag :micropost_id, micropost.id %>
-              <%= f.submit 'お気に入りに追加', class: 'btn btn-primary btn-xs' %>
+              <%= f.submit 'お気に入りに追加', class: 'btn btn-primary btn-xs btn_inline' %>
             <% end %>
           <% end %>
 
